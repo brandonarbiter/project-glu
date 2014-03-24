@@ -152,7 +152,7 @@ header a.button.trello {
   position: absolute;
   right: 0;
   top: 100px;
-  background: transparent url(../images/button.png) 0 0 no-repeat;
+  background: transparent url(../images/button-trello.png) 0 0 no-repeat;
 }
 aside a.button {
   width: 138px;
