@@ -22,7 +22,6 @@
         <h1>Project-Glu</h1>
         <h2>Project-Glu: gluing some existing things together to make managing my son&#39;s T1D a little easier/safer.</h2>
         <a href="https://github.com/jasoncalabrese/project-glu" class="button"><small>View project on</small>GitHub</a>
-        <a href="https://trello.com/b/k8dwYmAI" class="button trello"><small>Ideas/Current Status on</small>Trello</a>
       </div>
     </header>
 
@@ -39,15 +38,75 @@
 
 <p>I have a <a href="https://github.com/jasoncalabrese/original-android-cgm">forked</a> version of <a href="https://twitter.com/jcostik">@jcostik</a>'s <a href="https://github.com/hackingtype1/original-android-cgm">original-android-app</a> running on a Moto G and have it posting simple json to <a href="https://github.com/jasoncalabrese/project-glu">this</a> web app, I'm planing to replace this with a locally running instance of the <a href="http://tidepool.org/platform/">tidepool platform</a>.</p>
 
-<p>I have the android app posting to the web app running locally and at AWS so that I can test changes in more controlled way.</p>
+<p>I also have a <a href="https://github.com/jasoncalabrese/cgm-remote-monitor">forked</a> version of <a href="https://github.com/rnpenguin/cgm-remote-monitor">NightScout</a> that uses the same mongo db as the basic web-app
+and a <a href="https://github.com/jasoncalabrese/cgm-pebble">forked</a> version of <a href="https://github.com/hackingtype1/cgm-pebble">cgm-pebble</a> that connects to the project-glu endpoint to display the current BG value on a Pebble watch.</p>
 
-<p>I also have a <a href="https://github.com/jasoncalabrese/cgm-remote-monitor">forked</a> version of <a href="https://github.com/rnpenguin/cgm-remote-monitor">NightScout</a> that uses the same mongo db as the basic web-app. </p>
+<p><strong>For quick, easy, and repeatable deploys I'm using vagrant.
+To give it a try follow these steps:</strong></p>
+
+<ol>
+<li>clone repo <code>git clone https://github.com/jasoncalabrese/project-glu.git; cd project-glu</code>
+</li>
+<li><a href="http://docs.vagrantup.com/v2/installation/index.html">install vagrant</a></li>
+<li>setup a <a href="https://www.digitalocean.com/?refcode=78da7dabdaf4">digital ocean</a> account: use promo code 'SSDMAY10' for 2 free months - <strong>link includes my referral code</strong>
+</li>
+<li>install <a href="https://github.com/smdahlen/vagrant-digitalocean">https://github.com/smdahlen/vagrant-digitalocean</a>
+</li>
+<li>configure dropbox: <a href="https://github.com/andreafabrizi/Dropbox-Uploader">https://github.com/andreafabrizi/Dropbox-Uploader</a>
+</li>
+<li>Set ENV VARS
+
+<ul>
+<li>use the Digital Ocean <a href="https://cloud.digitalocean.com/api_access">api page</a> to find your values for: DO_CLIENT_ID, DO_API_KEY</li>
+<li>
+<code>DB_CONF="/Users/&lt;YOU&gt;/.dropbox_uploader"</code> OR <code>DB_CONF="/home/&lt;YOU&gt;/.dropbox_uploader"</code>
+</li>
+</ul>
+</li>
+<li>
+<code>vagrant up --provider=digital_ocean</code> and wait (I'm using a mac and have no idea if this would/could work from windows)</li>
+<li>done</li>
+</ol><p><strong>Running the <code>vagrant up</code> command above should have:</strong></p>
+
+<ul>
+<li>launched an brand new server at digitalocean, called a droplet ($5/month)</li>
+<li>installed node, mongo, git, nginx, etc</li>
+<li>cloned all the required repos</li>
+<li>ran the required setups: npm, bower, grunt, etc</li>
+<li>downloaded a backup from your dropbox (if configured)</li>
+<li>started everything</li>
+<li>installed a cron script that runs nightly to backup data to dropbox</li>
+</ul><p><strong>Once all of that is done and assuming there were now big errors you should be able to:</strong></p>
+
+<p><em>In links below replace YOUR_DROPLET_IP with the IP address of your droplet, this should be one of the last lines after running <code>vagrant up</code> or you can find it at <a href="https://cloud.digitalocean.com/droplets">digital ocean</a></em></p>
+
+<ul>
+<li>See <a href="http://YOUR_DROPLET_IP:1337">NightScout running on your brand new droplet</a>
+</li>
+<li>See <a href="http://YOUR_DROPLET_IP">the Project-Glu login on your droplet</a>
+</li>
+<li>And if those work, update the Android uploader so it can start uploading to you're new droplet (more info comming later)</li>
+</ul><h2>
+<a name="next-steps" class="anchor" href="#next-steps"><span class="octicon octicon-link"></span></a>next steps</h2>
+
+<p>Tracking ideas/progress on <a href="https://trello.com/b/k8dwYmAI/project-glu">trello</a></p>
 
 <p>-<a href="https://twitter.com/jasoncalabrese">@jasoncalabrese</a></p>
         </section>
 
         <aside id="sidebar">
-          <p class="repo-owner"><a href="https://github.com/jasoncalabrese/project-glu">Project-Glu</a> is maintained by <a href="https://twitter.com/jasoncalabrese">@jasoncalabrese</a>.</p>
+          <a href="https://github.com/jasoncalabrese/project-glu/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/jasoncalabrese/project-glu/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jasoncalabrese/project-glu"></a> is maintained by <a href="https://github.com/jasoncalabrese">jasoncalabrese</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>
